@@ -44,3 +44,7 @@ php artisan migrate --seed
 Email       : admin@mail.com
 Password    : secret
 ```
+
+## Dibuat dengan
+
+-   [Laravel](https://laravel.com/) - Web Framework
