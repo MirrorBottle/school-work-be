@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@mail.com',
             'email_verified_at' => now(),
             'password' => Hash::make('secret'),
+            'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -33,6 +35,7 @@ class UsersTableSeeder extends Seeder
                 'email' => $faker->email,
                 'email_verified_at' => now(),
                 'password' => Hash::make('secret'),
+                'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
