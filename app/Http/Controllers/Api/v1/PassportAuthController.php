@@ -43,7 +43,7 @@ class PassportAuthController extends Controller
         ];
 
         if (!auth()->attempt($data)) {
-            return response()->json(['status' => 401, 'message' => 'Unauthorised'], 401);
+            return response()->json(['status' => 401, 'message' => 'E-Mail atau Password salah!'], 401);
         }
 
         $token = auth()->user()->createToken('token')->accessToken;
