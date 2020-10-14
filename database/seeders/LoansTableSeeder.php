@@ -16,7 +16,7 @@ class LoansTableSeeder extends Seeder
     public function run()
     {
         DB::table('loans')->insert([
-            'user_id' => mt_rand(1, 28),
+            'user_id' => 1,
             'employee_id' => mt_rand(1, 28),
             'start_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
@@ -31,7 +31,7 @@ class LoansTableSeeder extends Seeder
         ]);
 
         DB::table('loans')->insert([
-            'user_id' => mt_rand(1, 28),
+            'user_id' => 2,
             'employee_id' => mt_rand(1, 28),
             'start_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
@@ -46,7 +46,7 @@ class LoansTableSeeder extends Seeder
         ]);
 
         DB::table('loans')->insert([
-            'user_id' => mt_rand(1, 28),
+            'user_id' => 3,
             'employee_id' => mt_rand(1, 28),
             'start_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
