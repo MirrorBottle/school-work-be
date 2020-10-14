@@ -13,14 +13,14 @@ if (!function_exists('indonesian_date_format')) {
     }
 }
 
-if (!function_exists('get_gender')) {
+if (!function_exists('get_gender_name')) {
     /**
      * Get gender name
      *
      * @param  mixed $user
      * @return string
      */
-    function get_gender($user)
+    function get_gender_name($user)
     {
         return $user->gender === 0 ? 'Laki-laki' : 'Perempuan';
     }
