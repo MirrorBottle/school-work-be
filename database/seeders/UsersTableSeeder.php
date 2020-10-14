@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Administrator',
-            'gender' => mt_rand(1, 2),
+            'gender' => mt_rand(0, 1),
             'email' => 'admin@mail.com',
             'phone_number' => '081346153182',
             'join_date' => Carbon::createFromDate(mt_rand(1950, 2020), mt_rand(1, 12), mt_rand(1, 31)),
