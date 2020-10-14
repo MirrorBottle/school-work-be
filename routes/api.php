@@ -33,4 +33,5 @@ Route::prefix('loan')->group(function () {
 
 Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'listOfUsers']);
+    Route::get('/{id}', [UserController::class, 'detailsOfUser']);
 });

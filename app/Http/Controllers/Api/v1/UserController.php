@@ -19,4 +19,11 @@ class UserController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pengguna', 'data' => $data], 200);
     }
+
+    public function detailsOfUser($id)
+    {
+        $data = User::detailsOfUser($id);
+
+        return response()->json(['status' => 200, 'message' => 'Berhasil data detail pengguna', 'user' => $data], 200);
+    }
 }

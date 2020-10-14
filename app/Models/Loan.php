@@ -28,7 +28,7 @@ class Loan extends Model
      * Get loan status
      *
      * @param  mixed $loan
-     * @return status
+     * @return string
      */
     public static function getLoanStatuses($loan)
     {
@@ -83,7 +83,7 @@ class Loan extends Model
         $data['userPhoneNumber'] = $loan_details->users->phone_number;
         $data['startDate'] = indonesian_date_format($loan_details->start_date);
         $data['dueDate'] = indonesian_date_format($loan_details->due_date);
-        $data['startDate'] = indonesian_date_format($loan_details->loan_date));
+        $data['startDate'] = indonesian_date_format($loan_details->loan_date);
         $data['totalLoan'] = $loan_details->total_loan;
         $data['paymentCount'] = $loan_details->payment_counts;
         $data['totalPayment'] = $loan_details->total_payment;
