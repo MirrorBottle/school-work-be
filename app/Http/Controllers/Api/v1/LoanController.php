@@ -15,4 +15,11 @@ class LoanController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pinjaman', 'loans' => $data], 200);
     }
+
+    public function detailsOfLoan($id)
+    {
+        $data = Loan::detailsOfLoan($id);
+
+        return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pinjaman', 'loans' => $data], 200);
+    }
 }

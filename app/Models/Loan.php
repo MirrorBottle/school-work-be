@@ -19,17 +19,24 @@ class Loan extends Model
         return $this->hasOne('App\Models\User', 'id', 'employee_id');
     }
 
+    public function payments()
+    {
+        return $this->hasMany('App\Models\Payment');
+    }
+
     public static function getLoanStatuses($loan)
     {
         if ($loan->status === 0 && $loan->is_approve === NULL) {
-            return $status = 'Belum Divalidasi';
+            $status = 'Belum Divalidasi';
         } else if ($loan->status === 1 && $loan->is_approve === 1) {
-            return $status = 'Lunas';
+            $status = 'Lunas';
         } else if ($loan->status === 2 && $loan->is_approve === 1) {
-            return $status = 'Belum Lunas';
+            $status = 'Belum Lunas';
         } else if ($loan->is_approve === 0) {
-            return $status = 'Ditolak';
+            $status = 'Ditolak';
         }
+
+        return $status;
     }
 
     public static function listOfLoans()
@@ -44,6 +51,43 @@ class Loan extends Model
             $data[$key]['totalLoan'] = $loan->total_loan;
             $data[$key]['status'] = Loan::getLoanStatuses($loan);
             $data[$key]['employeeName'] = $loan->employees()->first()->name;
+        }
+
+        return $data;
+    }
+
+    public static function detailsOfLoan($id)
+    {
+        $loan_details = Loan::findOrFail($id);
+
+        $data['id'] = $loan_details->id;
+        $data['userId'] = $loan_details->users()->first()->id;
+        $data['userName'] = $loan_details->users()->first()->name;
+        $data['userPhoneNumber'] = $loan_details->users->phone_number;
+        $data['startDate'] = date('d-m-Y', strtotime($loan_details->start_date));
+        $data['dueDate'] = date('d-m-Y', strtotime($loan_details->due_date));
+        $data['startDate'] = date('d-m-Y', strtotime($loan_details->loan_date));
+        $data['totalLoan'] = $loan_details->total_loan;
+        $data['paymentCount'] = $loan_details->payment_counts;
+        $data['totalPayment'] = $loan_details->total_payment;
+        $data['status'] = Loan::getLoanStatuses($loan_details);
+        $data['employeeName'] = $loan_details->employees()->first()->name;
+        $data['employeeId'] = $loan_details->employees()->first()->id;
+        $data['payments'] = Loan::loanPaymentDetails($loan_details);
+
+        return $data;
+    }
+
+    public static function loanPaymentDetails($loan_details)
+    {
+        foreach ($loan_details->payments as $key => $payment_detail) {
+            $data[$key]['id'] = $payment_detail->id;
+            $data[$key]['dueDate'] = date('d-m-Y', strtotime($payment_detail->due_date));
+            $data[$key]['paymentNumber'] = $payment_detail->payment_number;
+            $data[$key]['paymentDate'] = date('d-m-Y', strtotime($payment_detail->payment_date));
+            $data[$key]['status'] = Payment::getPaymentStatuses($payment_detail);
+            $data[$key]['employeeName'] = $loan_details->employees()->first()->name;
+            $data[$key]['description'] = $payment_detail->description;
         }
 
         return $data;
