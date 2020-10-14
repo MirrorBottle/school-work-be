@@ -18,7 +18,7 @@ class CreateDepositsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('total_deposit');
             $table->dateTime('deposit_date');
-            $table->tinyInteger('status')->note('0 = process, 1 = approve, 2 = rejected');
+            $table->tinyInteger('status')->comment('0 = belum divalidasi, 1 = disetujui, 2 = ditolak');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
