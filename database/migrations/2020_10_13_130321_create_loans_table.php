@@ -23,7 +23,7 @@ class CreateLoansTable extends Migration
             $table->integer('total_payment');
             $table->integer('payment_counts');
             $table->tinyInteger('status')->note('0 = process, 1 = approve, 2 = rejected');
-            $table->boolean('is_approve');
+            $table->boolean('is_approve')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
