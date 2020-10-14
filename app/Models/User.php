@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Loan');
     }
 
+    /**
+     * Wrapping the users data and throw it to the controller
+     *
+     * @return array
+     */
     public static function listOfUsers()
     {
         $users = User::all();

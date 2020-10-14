@@ -24,6 +24,12 @@ class Loan extends Model
         return $this->hasMany('App\Models\Payment');
     }
 
+    /**
+     * Get loan status
+     *
+     * @param  mixed $loan
+     * @return status
+     */
     public static function getLoanStatuses($loan)
     {
         if ($loan->status === 0 && $loan->is_approve === NULL) {
@@ -39,6 +45,11 @@ class Loan extends Model
         return $status;
     }
 
+    /**
+     * Wrapping the loans data and throw it to the controller
+     *
+     * @return array
+     */
     public static function listOfLoans()
     {
         $loans = Loan::all();
@@ -56,6 +67,12 @@ class Loan extends Model
         return $data;
     }
 
+    /**
+     * Wrapping the loans data and throw it to the controller
+     *
+     * @param  mixed $id
+     * @return array
+     */
     public static function detailsOfLoan($id)
     {
         $loan_details = Loan::findOrFail($id);
@@ -78,6 +95,12 @@ class Loan extends Model
         return $data;
     }
 
+    /**
+     * Get payment details from loan details
+     *
+     * @param  mixed $loan_details
+     * @return array
+     */
     public static function loanPaymentDetails($loan_details)
     {
         foreach ($loan_details->payments as $key => $payment_detail) {

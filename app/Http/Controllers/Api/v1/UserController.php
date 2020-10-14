@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * Get list array of users
+     *
+     * @return json
+     */
     public function listOfUsers()
     {
         $data = User::listOfUsers();
