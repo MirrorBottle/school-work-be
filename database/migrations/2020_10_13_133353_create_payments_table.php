@@ -15,12 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('loan_id');
             $table->dateTime('due_date');
             $table->dateTime('payment_date');
             $table->integer('payment_number');
             $table->enum('status', ['belum lunas', 'lunas', 'lunas terlambat', 'belum lunas terlambat'])->note('0 = belum lunas, 1 = lunas, 2 = lunas terlambat, 3 = belum lunas terlambat');
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('loan_id');
             $table->timestamps();
 
             $table->foreign('loan_id')->references('id')->on('loans')->cascadeOnDelete();
