@@ -46,7 +46,7 @@ class Loan extends Model
     }
 
     /**
-     * Wrapping the loans data and throw it to the controller
+     * Wrapping the loans data
      *
      * @return array
      */
@@ -68,7 +68,7 @@ class Loan extends Model
     }
 
     /**
-     * Wrapping the loans data and throw it to the controller
+     * Wrapping the loan details data
      *
      * @param  mixed $id
      * @return array

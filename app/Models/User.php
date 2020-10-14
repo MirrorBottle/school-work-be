@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Wrapping the users data and throw it to the controller
+     * Wrapping the users data
      *
      * @return array
      */
@@ -74,6 +74,22 @@ class User extends Authenticatable
         return $data;
     }
 
+    /**
+     * Wrapping the user details data
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function detailsOfUser($id)
+    {
+    }
+
+    /**
+     * Get user gender
+     *
+     * @param  mixed $user
+     * @return string
+     */
     public static function getUserGender($user)
     {
         return $user->gender === 0 ? 'Laki-laki' : 'Perempuan';
