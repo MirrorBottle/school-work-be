@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class PassportAuthController extends Controller
@@ -37,17 +38,28 @@ class PassportAuthController extends Controller
      */
     public function login(Request $request)
     {
-        $data = [
+        $login_credentials = [
             'email' => $request->email,
             'password' => $request->password
         ];
 
-        if (!auth()->attempt($data)) {
+        if (!auth()->attempt($login_credentials)) {
             return response()->json(['status' => 401, 'message' => 'E-Mail atau Password salah!'], 401);
         }
 
-        $token = auth()->user()->createToken('token')->accessToken;
+        $user = Auth::user();
+        $data['id'] = $user->id;
+        $data['username'] = $user->name;
+        $data['role'] = $this->getUserRoleName(User::find($user->id));
+        $data['token'] =  auth()->user()->createToken('token')->accessToken;
 
-        return response()->json(['status' => 200, 'message' => 'Login berhasil!', 'token' => $token], 200);
+        return response()->json(['status' => 200, 'message' => 'Login berhasil!', 'data' => $data], 200);
+    }
+
+    public function getUserRoleName($user)
+    {
+        foreach ($user->roles as $key => $role) {
+            return $role->name;
+        }
     }
 }
