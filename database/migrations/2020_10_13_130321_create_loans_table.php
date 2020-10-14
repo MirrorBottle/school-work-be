@@ -22,7 +22,7 @@ class CreateLoansTable extends Migration
             $table->integer('total_loan');
             $table->integer('total_payment');
             $table->integer('payment_counts');
-            $table->tinyInteger('status')->note('0 = process, 1 = approve, 2 = rejected');
+            $table->tinyInteger('status')->comment('0 = process, 1 = approve, 2 = rejected');
             $table->boolean('is_approve')->nullable();
             $table->dateTime('loan_date')->nullable();
             $table->timestamps();
