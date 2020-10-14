@@ -15,7 +15,7 @@ if (!function_exists('indonesian_date_format')) {
 
 if (!function_exists('get_gender')) {
     /**
-     * Get user gender
+     * Get gender name
      *
      * @param  mixed $user
      * @return string
