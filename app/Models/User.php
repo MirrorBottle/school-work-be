@@ -52,4 +52,25 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Loan');
     }
+
+    public static function listOfUsers()
+    {
+        $users = User::all();
+
+        foreach ($users as $key => $user) {
+            $data[$key]['id'] = $user->id;
+            $data[$key]['name'] = $user->name;
+            $data[$key]['gender'] = User::getUserGender($user);
+            $data[$key]['email'] = $user->email;
+            $data[$key]['phoneNumber'] = $user->phone_number;
+            $data[$key]['joinDate'] = date('d-m-Y', strtotime($user->join_date));
+        }
+
+        return $data;
+    }
+
+    public static function getUserGender($user)
+    {
+        return $user->gender === 0 ? 'Laki-laki' : 'Perempuan';
+    }
 }
