@@ -58,7 +58,7 @@ class Loan extends Model
             $data[$key]['id'] = $loan->id;
             $data[$key]['userId'] = $loan->user_id;
             $data[$key]['userName'] = $loan->users()->first()->name;
-            $data[$key]['dueDate'] = date('d-m-Y', strtotime($loan->due_date));
+            $data[$key]['dueDate'] = indonesian_date_format($loan->due_date);
             $data[$key]['totalLoan'] = $loan->total_loan;
             $data[$key]['status'] = Loan::getLoanStatuses($loan);
             $data[$key]['employeeName'] = $loan->employees()->first()->name;
@@ -81,9 +81,9 @@ class Loan extends Model
         $data['userId'] = $loan_details->users()->first()->id;
         $data['userName'] = $loan_details->users()->first()->name;
         $data['userPhoneNumber'] = $loan_details->users->phone_number;
-        $data['startDate'] = date('d-m-Y', strtotime($loan_details->start_date));
-        $data['dueDate'] = date('d-m-Y', strtotime($loan_details->due_date));
-        $data['startDate'] = date('d-m-Y', strtotime($loan_details->loan_date));
+        $data['startDate'] = indonesian_date_format($loan_details->start_date);
+        $data['dueDate'] = indonesian_date_format($loan_details->due_date);
+        $data['startDate'] = indonesian_date_format($loan_details->loan_date));
         $data['totalLoan'] = $loan_details->total_loan;
         $data['paymentCount'] = $loan_details->payment_counts;
         $data['totalPayment'] = $loan_details->total_payment;
@@ -105,9 +105,9 @@ class Loan extends Model
     {
         foreach ($loan_details->payments as $key => $payment_detail) {
             $data[$key]['id'] = $payment_detail->id;
-            $data[$key]['dueDate'] = date('d-m-Y', strtotime($payment_detail->due_date));
+            $data[$key]['dueDate'] = indonesian_date_format($payment_detail->due_date);
             $data[$key]['paymentNumber'] = $payment_detail->payment_number;
-            $data[$key]['paymentDate'] = date('d-m-Y', strtotime($payment_detail->payment_date));
+            $data[$key]['paymentDate'] = indonesian_date_format($payment_detail->payment_date);
             $data[$key]['status'] = Payment::getPaymentStatuses($payment_detail);
             $data[$key]['employeeName'] = $loan_details->employees()->first()->name;
             $data[$key]['description'] = $payment_detail->description;

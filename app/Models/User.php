@@ -68,7 +68,7 @@ class User extends Authenticatable
             $data[$key]['gender'] = User::getUserGender($user);
             $data[$key]['email'] = $user->email;
             $data[$key]['phoneNumber'] = $user->phone_number;
-            $data[$key]['joinDate'] = date('d-m-Y', strtotime($user->join_date));
+            $data[$key]['joinDate'] = indonesian_date_format($user->join_date);
         }
 
         return $data;

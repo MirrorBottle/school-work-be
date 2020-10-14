@@ -16,9 +16,9 @@ class Payment extends Model
 
     public static function getPaymentStatuses($payment)
     {
-        if ($payment->status === 0 && date('d-m-Y') > date('d-m-Y', strtotime($payment->due_date))) {
+        if ($payment->status === 0 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
             $status = 'Lunas Belum Terlambat';
-        } else if ($payment->status === 1 && date('d-m-Y') > date('d-m-Y', strtotime($payment->due_date))) {
+        } else if ($payment->status === 1 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
             $status = 'Lunas Terlambat';
         } else if ($payment->status === 1) {
             $status = 'Lunas';
