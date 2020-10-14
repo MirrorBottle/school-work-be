@@ -12,3 +12,16 @@ if (!function_exists('indonesian_date_format')) {
         return date('d-m-Y', strtotime($date));
     }
 }
+
+if (!function_exists('get_gender')) {
+    /**
+     * Get user gender
+     *
+     * @param  mixed $user
+     * @return string
+     */
+    function get_gender($user)
+    {
+        return $user->gender === 0 ? 'Laki-laki' : 'Perempuan';
+    }
+}
