@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->dateTime('due_date');
             $table->dateTime('payment_date');
             $table->integer('payment_number');
-            $table->enum('status', ['belum lunas', 'lunas', 'terlambat lunas', 'terlambat belum lunas'])->note('0 = belum lunas, 1 = lunas, 2 = terlambat lunas, 3 = terlambat belum lunas');
+            $table->enum('status', ['belum lunas', 'lunas', 'lunas terlambat', 'belum lunas terlambat'])->note('0 = belum lunas, 1 = lunas, 2 = lunas terlambat, 3 = belum lunas terlambat');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('loan_id');
             $table->timestamps();
