@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->loadHelpers();
     }
 
     /**
@@ -29,5 +29,17 @@ class AppServiceProvider extends ServiceProvider
         \Carbon\Carbon::setLocale('id');
         Schema::defaultStringLength(191);
         date_default_timezone_set('Asia/Makassar');
+    }
+
+    /**
+     * Load custom helpers by user
+     *
+     * @return void
+     */
+    protected function loadHelpers()
+    {
+        foreach (glob(__DIR__ . '/../Helpers/*.php') as $filename) {
+            require_once $filename;
+        }
     }
 }
