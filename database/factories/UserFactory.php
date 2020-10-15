@@ -29,7 +29,7 @@ class UserFactory extends Factory
 
         return [
             'name' => $this->faker->name,
-            'gender' => mt_rand(1, 2),
+            'gender' => mt_rand(0, 1),
             'email' => $this->faker->unique()->safeEmail,
             'phone_number' => $this->faker->e164PhoneNumber,
             'join_date' => Carbon::createFromDate(mt_rand(2000, date('Y')), mt_rand(1, 12), mt_rand(1, 31)),
