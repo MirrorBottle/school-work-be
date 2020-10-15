@@ -32,10 +32,14 @@ composer install
 ```
 
 -   Siapkan database dan atur file .env sesuai dengan konfigurasi anda.
--   Jika sudah, migrate seluruh migrasi dan seeding data.
+-   Jika sudah, migrate seluruh migrasi, seeding data dan install passport client key.
 
 ```bash
 php artisan migrate --seed
+```
+
+```bash
+php artisan passport:install --force
 ```
 
 -   User default aplikasi untuk login
