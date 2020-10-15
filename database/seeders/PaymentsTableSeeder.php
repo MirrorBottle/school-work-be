@@ -20,7 +20,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 1,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -31,7 +31,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 2,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -42,7 +42,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 3,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -51,7 +51,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 1,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 4,
             'status' => 0,
             'description' => null,
@@ -62,7 +62,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 1,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 5,
             'status' => 0,
             'description' => null,
@@ -77,7 +77,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 1,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -88,7 +88,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 2,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -97,7 +97,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 2,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 3,
             'status' => 0,
             'description' => null,
@@ -108,7 +108,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 2,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 4,
             'status' => 0,
             'description' => null,
@@ -121,7 +121,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 5,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -132,7 +132,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 3,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 1,
             'status' => 0,
             'description' => null,
@@ -145,7 +145,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 2,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -154,7 +154,7 @@ class PaymentsTableSeeder extends Seeder
         DB::table('payments')->insert([
             'loan_id' => 3,
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
-            'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
+            'payment_date' => null,
             'payment_number' => 3,
             'status' => 0,
             'description' => null,
@@ -167,7 +167,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 4,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
@@ -178,7 +178,7 @@ class PaymentsTableSeeder extends Seeder
             'due_date' => Carbon::createFromDate(date('Y'), mt_rand(1, 6), mt_rand(1, date('d'))),
             'payment_date' => Carbon::createFromDate(date('Y'), mt_rand(6, 12), mt_rand(1, date('d'))),
             'payment_number' => 5,
-            'status' => 0,
+            'status' => 1,
             'description' => null,
             'created_at' => now(),
             'updated_at' => now()
