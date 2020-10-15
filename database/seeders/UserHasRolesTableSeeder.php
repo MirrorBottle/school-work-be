@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\UserHasRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,5 +19,7 @@ class UserHasRolesTableSeeder extends Seeder
             'user_id' => 1,
             'role_id' => 1
         ]);
+
+        UserHasRole::factory()->count(19)->create();
     }
 }
