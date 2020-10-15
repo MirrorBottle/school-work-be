@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $data = User::listOfUsers();
 
-        return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pengguna', 'data' => $data], 200);
+        return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pengguna', 'users' => $data], 200);
     }
 
     public function detailsOfUser($id)

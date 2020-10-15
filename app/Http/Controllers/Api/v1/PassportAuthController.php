@@ -50,16 +50,9 @@ class PassportAuthController extends Controller
         $user = Auth::user();
         $data['id'] = $user->id;
         $data['username'] = $user->name;
-        $data['role'] = $this->getUserRoleName(User::find($user->id));
+        $data['role'] = User::getUserRoleName(User::find($user->id));
         $data['token'] =  auth()->user()->createToken('token')->accessToken;
 
         return response()->json(['status' => 200, 'message' => 'Login berhasil!', 'data' => $data], 200);
-    }
-
-    public function getUserRoleName($user)
-    {
-        foreach ($user->roles as $key => $role) {
-            return $role->name;
-        }
     }
 }

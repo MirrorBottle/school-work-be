@@ -75,6 +75,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user role name by the collection of user data
+     *
+     * @param  mixed $user
+     * @return string
+     */
+    public static function getUserRoleName($user)
+    {
+        foreach ($user->roles as $key => $role) {
+            return $role->name;
+        }
+    }
+
+    /**
      * Wrapping the user details data
      *
      * @param  mixed $id
@@ -115,6 +128,27 @@ class User extends Authenticatable
             $data[$key]['totalLoan'] = $loan->total_loan;
             $data[$key]['paymentCount'] = $loan->payment_counts;
             $data[$key]['status'] = Loan::getLoanStatuses($loan);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Wrapping the employees data
+     *
+     * @return array
+     */
+    public static function listOfEmployees()
+    {
+        $employees = User::all();
+
+        foreach ($employees as $key => $employee) {
+            $data[$key]['id'] = $employee->id;
+            $data[$key]['name'] = $employee->name;
+            $data[$key]['gender'] = get_gender_name($employee);
+            $data[$key]['email'] = $employee->email;
+            $data[$key]['phoneNumber'] = $employee->phone_number;
+            $data[$key]['joinDate'] = indonesian_date_format($employee);
         }
 
         return $data;
