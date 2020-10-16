@@ -18,11 +18,17 @@ class Payment extends Model
     {
         if ($payment->status === 0 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
             $status = 'Lunas Belum Terlambat';
-        } else if ($payment->status === 1 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
+        }
+
+        if ($payment->status === 1 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
             $status = 'Lunas Terlambat';
-        } else if ($payment->status === 1) {
+        }
+
+        if ($payment->status === 1) {
             $status = 'Lunas';
-        } else if ($payment->status === 0) {
+        }
+
+        if ($payment->status === 0) {
             $status = 'Belum Lunas';
         }
 
