@@ -19,8 +19,13 @@ class CreateLoansTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->dateTime('start_date');
             $table->dateTime('due_date');
+            $table->dateTime('paid_date');
+            $table->integer('interest_percent');
             $table->integer('total_loan');
+            $table->integer('total_loan_with_interest');
             $table->integer('total_payment');
+            $table->integer('total_payment_interest');
+            $table->integer('total_payment_with_interest');
             $table->integer('payment_counts');
             $table->tinyInteger('status')->comment('0 = process, 1 = approve, 2 = rejected');
             $table->boolean('is_approve')->nullable();
