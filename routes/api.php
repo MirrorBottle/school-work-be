@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\PassportAuthController;
 use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\v1\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,8 @@ Route::prefix('loan')->group(function () {
 Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'listOfUsers']);
     Route::get('/{id}', [UserController::class, 'detailsOfUser']);
+});
+
+Route::prefix('employee')->group(function () {
+    Route::get('/', [EmployeeController::class, 'listOfEmployees']);
 });
