@@ -61,7 +61,7 @@ class Payment extends Model
         $data['status'] = Payment::getPaymentStatuses($payment_details);
         $data['description'] = $payment_details->description;
         $data['employeeName'] = $payment_details->employees()->first()->name;
-        $data['userId'] = $payment_details->users()->first()->name;
+        $data['userId'] = $payment_details->users()->first()->id;
 
         return $data;
     }
