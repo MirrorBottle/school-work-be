@@ -51,4 +51,5 @@ Route::prefix('deposit')->group(function () {
 
 Route::prefix('payment')->group(function () {
     Route::get('/', [PaymentController::class, 'listOfPayments']);
+    Route::get('/{id}', [PaymentController::class, 'detailsOfPayment']);
 });

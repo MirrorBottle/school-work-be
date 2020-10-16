@@ -14,6 +14,11 @@ class Payment extends Model
         return $this->hasOne('App\Models\User', 'id');
     }
 
+    public function employees()
+    {
+        return $this->hasOne('App\Models\User', 'id');
+    }
+
     public function loans()
     {
         return $this->belongsTo('App\Models\Loan');
@@ -38,6 +43,25 @@ class Payment extends Model
             $data[$key]['paymentDate'] = indonesian_date_format($payment->payment_date);
             $data[$key]['status'] = Payment::getPaymentStatuses($payment);
         }
+
+        return $data;
+    }
+
+    public static function detailsOfPayment($id)
+    {
+        $payment_details = Payment::findOrFail($id);
+
+        $data['id'] = $payment_details->id;
+        $data['loanId'] = $payment_details->loan_id;
+        $data['userName'] = $payment_details->users()->first()->name;
+        $data['userPhoneNumber'] = $payment_details->users()->first()->phone_number;
+        $data['duedate'] = indonesian_date_format($payment_details->due_date);
+        $data['paymentNumber'] = $payment_details->payment_number;
+        $data['paymentDate'] = indonesian_date_format($payment_details->payment_date);
+        $data['status'] = Payment::getPaymentStatuses($payment_details);
+        $data['description'] = $payment_details->description;
+        $data['employeeName'] = $payment_details->employees()->first()->name;
+        $data['userId'] = $payment_details->users()->first()->name;
 
         return $data;
     }

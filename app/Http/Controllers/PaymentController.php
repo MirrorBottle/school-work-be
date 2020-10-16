@@ -18,4 +18,11 @@ class PaymentController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data angsuran', 'payments' => $data], 200);
     }
+
+    public function detailsOfPayment($id)
+    {
+        $data = Payment::detailsOfPayment($id);
+
+        return response()->json(['status' => 200, 'message' => 'Berhasil mengambil detail angsuran', 'payment' => $data], 200);
+    }
 }
