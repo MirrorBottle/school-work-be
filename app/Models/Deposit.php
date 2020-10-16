@@ -9,6 +9,26 @@ class Deposit extends Model
 {
     use HasFactory;
 
+    public function users()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
+    public static function listOfDeposits()
+    {
+        $deposits = Deposit::all();
+
+        foreach ($deposits as $key => $deposit) {
+            $data[$key]['id'] = $deposit->id;
+            $data[$key]['employeeName'] = $deposit->users()->first()->name;
+            $data[$key]['totalDeposit'] = $deposit->total_deposit;
+            $data[$key]['depositDate'] = indonesian_date_format($deposit);
+            $data[$key]['status'] = Deposit::getDepositStatuses($deposit);
+        }
+
+        return $data;
+    }
+
     public static function getDepositDataByUserId($user_id)
     {
         $deposits = Deposit::where('user_id', $user_id)->get();

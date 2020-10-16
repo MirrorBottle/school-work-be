@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\DepositController;
 use App\Http\Controllers\Api\v1\LoanController;
 use App\Http\Controllers\Api\v1\PassportAuthController;
 use App\Http\Controllers\Api\v1\UserController;
@@ -40,4 +41,8 @@ Route::prefix('user')->group(function () {
 Route::prefix('employee')->group(function () {
     Route::get('/', [EmployeeController::class, 'listOfEmployees']);
     Route::get('/{id}', [EmployeeController::class, 'detailsOfEmployee']);
+});
+
+Route::prefix('deposit')->group(function () {
+    Route::get('/', [DepositController::class, 'listOfDeposits']);
 });
