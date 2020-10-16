@@ -19,4 +19,11 @@ class DepositController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data setoran', 'deposits' => $data], 200);
     }
+
+    public function detailsOfDeposit($id)
+    {
+        $data = Deposit::detailsOfDeposit($id);
+
+        return response()->json(['status' => 200, 'message' => 'Berhasil mengambil detail setoran', 'deposit' => $data], 200);
+    }
 }

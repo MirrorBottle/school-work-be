@@ -55,6 +55,25 @@ class Deposit extends Model
     }
 
     /**
+     * Get details of deposit by id
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public static function detailsOfDeposit($id)
+    {
+        $deposit_details = Deposit::findOrFail($id);
+
+        $data['id'] = $deposit_details->id;
+        $data['employeeName'] = $deposit_details->users()->first()->name;
+        $data['totalDeposit'] = $deposit_details->total_deposit;
+        $data['depositDate'] = indonesian_date_format($deposit_details->deposit_date);
+        $data['status'] = Deposit::getDepositStatuses($deposit_details);
+
+        return $data;
+    }
+
+    /**
      * Get deposit statuses
      *
      * @param  mixed $deposit
