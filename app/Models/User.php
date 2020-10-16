@@ -60,7 +60,9 @@ class User extends Authenticatable
      */
     public static function listOfUsers()
     {
-        $users = User::all();
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('role_id', 3);
+        })->get();
 
         foreach ($users as $key => $user) {
             $data[$key]['id'] = $user->id;
