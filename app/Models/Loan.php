@@ -115,4 +115,27 @@ class Loan extends Model
 
         return $data;
     }
+
+    /**
+     * Get loans data by user id
+     *
+     * @param  mixed $user_id
+     * @return array
+     */
+    public static function getLoansDataByUserId($user_id)
+    {
+        $loans = Loan::where('user_id', $user_id)->get();
+
+        foreach ($loans as $key => $loan) {
+            $data[$key]['id'] = $loan->id;
+            $data[$key]['startDate'] = $loan->start_date;
+            $data[$key]['dueDate'] = $loan->due_date;
+            $data[$key]['loanDate'] = $loan->loan_date;
+            $data[$key]['totalLoan'] = $loan->total_loan;
+            $data[$key]['paymentCount'] = $loan->payment_counts;
+            $data[$key]['status'] = Loan::getLoanStatuses($loan);
+        }
+
+        return $data;
+    }
 }

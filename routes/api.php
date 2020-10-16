@@ -39,4 +39,5 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('employee')->group(function () {
     Route::get('/', [EmployeeController::class, 'listOfEmployees']);
+    Route::get('/{id}', [EmployeeController::class, 'detailsOfEmployee']);
 });

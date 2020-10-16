@@ -14,4 +14,11 @@ class EmployeeController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Berhasil mengambil data pegawai', 'users' => $data], 200);
     }
+
+    public function detailsOfEmployee($id)
+    {
+        $data = User::detailsOfEmployee($id);
+
+        return response()->json(['status' => 200, 'message' => 'Berhasil data pegawai', 'user' => $data], 200);
+    }
 }

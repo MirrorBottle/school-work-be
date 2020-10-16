@@ -105,30 +105,7 @@ class User extends Authenticatable
         $data['joinDate'] = indonesian_date_format($user_details->join_date);
         $data['birthDate'] = indonesian_date_format($user_details->birth_date);
         $data['job'] = indonesian_date_format($user_details->job);
-        $data['loans'] = User::getLoansDataByUserId($user_details->id);
-
-        return $data;
-    }
-
-    /**
-     * Get loans data by user id
-     *
-     * @param  mixed $user_id
-     * @return array
-     */
-    public static function getLoansDataByUserId($user_id)
-    {
-        $loans = Loan::where('user_id', $user_id)->get();
-
-        foreach ($loans as $key => $loan) {
-            $data[$key]['id'] = $loan->id;
-            $data[$key]['startDate'] = $loan->start_date;
-            $data[$key]['dueDate'] = $loan->due_date;
-            $data[$key]['loanDate'] = $loan->loan_date;
-            $data[$key]['totalLoan'] = $loan->total_loan;
-            $data[$key]['paymentCount'] = $loan->payment_counts;
-            $data[$key]['status'] = Loan::getLoanStatuses($loan);
-        }
+        $data['loans'] = Loan::getLoansDataByUserId($user_details->id);
 
         return $data;
     }
@@ -152,6 +129,29 @@ class User extends Authenticatable
             $data[$key]['phoneNumber'] = $employee->phone_number;
             $data[$key]['joinDate'] = indonesian_date_format($employee);
         }
+
+        return $data;
+    }
+
+    /**
+     * Wrapping the employee details data
+     *
+     * @param  mixed $id
+     * @return array
+     */
+    public static function detailsOfEmployee($id)
+    {
+        $employee_details = User::findOrFail($id);
+
+        $data['id'] = $employee_details->id;
+        $data['name'] = $employee_details->name;
+        $data['gender'] = get_gender_name($employee_details);
+        $data['email'] = $employee_details->email;
+        $data['phoneNumber'] = $employee_details->phone_number;
+        $data['joinDate'] = indonesian_date_format($employee_details->join_date);
+        $data['birthDate'] = indonesian_date_format($employee_details->birth_date);
+        $data['job'] = $employee_details->job;
+        $data['deposits'] = Deposit::getDepositDataByUserId($employee_details->id);
 
         return $data;
     }
