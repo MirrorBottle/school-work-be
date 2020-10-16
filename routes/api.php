@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\EmployeeController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +47,8 @@ Route::prefix('employee')->group(function () {
 Route::prefix('deposit')->group(function () {
     Route::get('/', [DepositController::class, 'listOfDeposits']);
     Route::get('/{id}', [DepositController::class, 'detailsOfDeposit']);
+});
+
+Route::prefix('payment')->group(function () {
+    Route::get('/', [PaymentController::class, 'listOfPayments']);
 });
