@@ -41,7 +41,7 @@ class Payment extends Model
             $data[$key]['dueDate'] = indonesian_date_format($payment->due_date);
             $data[$key]['paymentNumber'] = $payment->payment_number;
             $data[$key]['paymentDate'] = indonesian_date_format($payment->payment_date);
-            $data[$key]['status'] = Payment::getPaymentStatuses($payment);
+            $data[$key]['status'] = get_payment_status($payment);
         }
 
         return $data;
@@ -58,38 +58,11 @@ class Payment extends Model
         $data['duedate'] = indonesian_date_format($payment_details->due_date);
         $data['paymentNumber'] = $payment_details->payment_number;
         $data['paymentDate'] = indonesian_date_format($payment_details->payment_date);
-        $data['status'] = Payment::getPaymentStatuses($payment_details);
+        $data['status'] = get_payment_status($payment_details);
         $data['description'] = $payment_details->description;
         $data['employeeName'] = $payment_details->employees()->first()->name;
         $data['userId'] = $payment_details->users()->first()->id;
 
         return $data;
-    }
-
-    /**
-     * Get payment statuses
-     *
-     * @param  mixed $payment
-     * @return string
-     */
-    public static function getPaymentStatuses($payment)
-    {
-        if ($payment->status === 0 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
-            $status = 'Lunas Belum Terlambat';
-        }
-
-        if ($payment->status === 1 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
-            $status = 'Lunas Terlambat';
-        }
-
-        if ($payment->status === 1) {
-            $status = 'Lunas';
-        }
-
-        if ($payment->status === 0) {
-            $status = 'Belum Lunas';
-        }
-
-        return $status;
     }
 }

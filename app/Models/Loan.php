@@ -25,27 +25,6 @@ class Loan extends Model
     }
 
     /**
-     * Get loan status
-     *
-     * @param  mixed $loan
-     * @return string
-     */
-    public static function getLoanStatuses($loan)
-    {
-        if ($loan->status === 0 && $loan->is_approve === NULL) {
-            $status = 'Belum Divalidasi';
-        } else if ($loan->status === 1 && $loan->is_approve === 1) {
-            $status = 'Lunas';
-        } else if ($loan->status === 2 && $loan->is_approve === 1) {
-            $status = 'Belum Lunas';
-        } else if ($loan->is_approve === 0) {
-            $status = 'Ditolak';
-        }
-
-        return $status;
-    }
-
-    /**
      * Wrapping the loans data
      *
      * @return array
@@ -60,7 +39,7 @@ class Loan extends Model
             $data[$key]['userName'] = $loan->users()->first()->name;
             $data[$key]['dueDate'] = indonesian_date_format($loan->due_date);
             $data[$key]['totalLoan'] = $loan->total_loan;
-            $data[$key]['status'] = Loan::getLoanStatuses($loan);
+            $data[$key]['status'] = get_loan_status($loan);
             $data[$key]['employeeName'] = $loan->employees()->first()->name;
         }
 
@@ -87,7 +66,7 @@ class Loan extends Model
         $data['totalLoan'] = $loan_details->total_loan;
         $data['paymentCount'] = $loan_details->payment_counts;
         $data['totalPayment'] = $loan_details->total_payment;
-        $data['status'] = Loan::getLoanStatuses($loan_details);
+        $data['status'] = get_loan_status($loan_details);
         $data['employeeName'] = $loan_details->employees()->first()->name;
         $data['employeeId'] = $loan_details->employees()->first()->id;
         $data['payments'] = Loan::loanPaymentDetails($loan_details);
@@ -108,7 +87,7 @@ class Loan extends Model
             $data[$key]['dueDate'] = indonesian_date_format($payment_detail->due_date);
             $data[$key]['paymentNumber'] = $payment_detail->payment_number;
             $data[$key]['paymentDate'] = indonesian_date_format($payment_detail->payment_date);
-            $data[$key]['status'] = Payment::getPaymentStatuses($payment_detail);
+            $data[$key]['status'] = get_payment_status($payment_detail);
             $data[$key]['employeeName'] = $loan_details->employees()->first()->name;
             $data[$key]['description'] = $payment_detail->description;
         }
@@ -133,7 +112,7 @@ class Loan extends Model
             $data[$key]['loanDate'] = $loan->loan_date;
             $data[$key]['totalLoan'] = $loan->total_loan;
             $data[$key]['paymentCount'] = $loan->payment_counts;
-            $data[$key]['status'] = Loan::getLoanStatuses($loan);
+            $data[$key]['status'] = get_loan_status($loan);
         }
 
         return $data;
