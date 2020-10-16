@@ -9,6 +9,11 @@ class Payment extends Model
 {
     use HasFactory;
 
+    public function users()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+
     public function loans()
     {
         return $this->belongsTo('App\Models\Loan');
