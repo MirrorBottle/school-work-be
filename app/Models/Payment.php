@@ -19,6 +19,12 @@ class Payment extends Model
         return $this->belongsTo('App\Models\Loan');
     }
 
+    /**
+     * Get payment statuses
+     *
+     * @param  mixed $payment
+     * @return string
+     */
     public static function getPaymentStatuses($payment)
     {
         if ($payment->status === 0 && date('d-m-Y') > indonesian_date_format($payment->due_date)) {
