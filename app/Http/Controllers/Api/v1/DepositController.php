@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class DepositController extends Controller
 {
+    /**
+     * Get all data from deposits
+     *
+     * @return json
+     */
     public function listOfDeposits()
     {
         $data = Deposit::listOfDeposits();

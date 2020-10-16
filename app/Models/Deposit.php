@@ -14,6 +14,11 @@ class Deposit extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
+    /**
+     * Wrapping the deposits data
+     *
+     * @return array
+     */
     public static function listOfDeposits()
     {
         $deposits = Deposit::all();
@@ -29,6 +34,12 @@ class Deposit extends Model
         return $data;
     }
 
+    /**
+     * Get the deposits by user id
+     *
+     * @param  mixed $user_id
+     * @return array
+     */
     public static function getDepositDataByUserId($user_id)
     {
         $deposits = Deposit::where('user_id', $user_id)->get();
@@ -43,6 +54,12 @@ class Deposit extends Model
         return $data;
     }
 
+    /**
+     * Get deposit statuses
+     *
+     * @param  mixed $deposit
+     * @return string
+     */
     public static function getDepositStatuses($deposit)
     {
         if ($deposit->status === 0) {
