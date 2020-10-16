@@ -20,6 +20,7 @@ class DepositsTableSeeder extends Seeder
                 'user_id' => mt_rand(1, 3),
                 'total_deposit' => mt_rand(1, 10),
                 'deposit_date' => Carbon::createFromDate(date('Y'), mt_rand(1, date('m')), mt_rand(1, date('d'))),
+                'is_main_savings' => 0,
                 'status' => mt_rand(0, 2),
                 'created_at' => now(),
                 'updated_at' => now()
