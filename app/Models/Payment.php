@@ -55,7 +55,7 @@ class Payment extends Model
         $data['loanId'] = $payment_details->loan_id;
         $data['userName'] = $payment_details->users()->first()->name;
         $data['userPhoneNumber'] = $payment_details->users()->first()->phone_number;
-        $data['duedate'] = indonesian_date_format($payment_details->due_date);
+        $data['dueDate'] = indonesian_date_format($payment_details->due_date);
         $data['paymentNumber'] = $payment_details->payment_number;
         $data['paymentDate'] = !is_null($payment_details->payment_date) ? indonesian_date_format($payment_details->payment_date) : null;
         $data['status'] = get_payment_status($payment_details);
