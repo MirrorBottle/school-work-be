@@ -62,7 +62,7 @@ class Loan extends Model
         $data['userPhoneNumber'] = $loan_details->users->phone_number;
         $data['startDate'] = indonesian_date_format($loan_details->start_date);
         $data['dueDate'] = indonesian_date_format($loan_details->due_date);
-        $data['startDate'] = indonesian_date_format($loan_details->loan_date);
+        $data['loanDate'] = !is_null($loan_details->loan_date) ? indonesian_date_format($loan_details->loan_date) : null;
         $data['totalLoan'] = $loan_details->total_loan;
         $data['paymentCount'] = $loan_details->payment_counts;
         $data['totalPayment'] = $loan_details->total_payment;
@@ -86,7 +86,7 @@ class Loan extends Model
             $data[$key]['id'] = $payment_detail->id;
             $data[$key]['dueDate'] = indonesian_date_format($payment_detail->due_date);
             $data[$key]['paymentNumber'] = $payment_detail->payment_number;
-            $data[$key]['paymentDate'] = indonesian_date_format($payment_detail->payment_date);
+            $data[$key]['paymentDate'] = !is_null($payment_detail->payment_date) ? indonesian_date_format($payment_detail->payment_date) : null;
             $data[$key]['status'] = get_payment_status($payment_detail);
             $data[$key]['employeeName'] = $loan_details->employees()->first()->name;
             $data[$key]['description'] = $payment_detail->description;
@@ -107,8 +107,8 @@ class Loan extends Model
 
         foreach ($loans as $key => $loan) {
             $data[$key]['id'] = $loan->id;
-            $data[$key]['startDate'] = $loan->start_date;
-            $data[$key]['dueDate'] = $loan->due_date;
+            $data[$key]['startDate'] = indonesian_date_format($loan->start_date);
+            $data[$key]['dueDate'] = indonesian_date_format($loan->due_date);
             $data[$key]['loanDate'] = $loan->loan_date;
             $data[$key]['totalLoan'] = $loan->total_loan;
             $data[$key]['paymentCount'] = $loan->payment_counts;
