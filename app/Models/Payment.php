@@ -40,7 +40,7 @@ class Payment extends Model
             $data[$key]['userPhoneNumber'] = $payment->users()->first()->phone_number;
             $data[$key]['dueDate'] = indonesian_date_format($payment->due_date);
             $data[$key]['paymentNumber'] = $payment->payment_number;
-            $data[$key]['paymentDate'] = indonesian_date_format($payment->payment_date);
+            $data[$key]['paymentDate'] = !is_null($payment->payment_date) ? indonesian_date_format($payment->payment_date) : null;
             $data[$key]['status'] = get_payment_status($payment);
         }
 
@@ -57,7 +57,7 @@ class Payment extends Model
         $data['userPhoneNumber'] = $payment_details->users()->first()->phone_number;
         $data['duedate'] = indonesian_date_format($payment_details->due_date);
         $data['paymentNumber'] = $payment_details->payment_number;
-        $data['paymentDate'] = indonesian_date_format($payment_details->payment_date);
+        $data['paymentDate'] = !is_null($payment_details->payment_date) ? indonesian_date_format($payment_details->payment_date) : null;
         $data['status'] = get_payment_status($payment_details);
         $data['description'] = $payment_details->description;
         $data['employeeName'] = $payment_details->employees()->first()->name;
