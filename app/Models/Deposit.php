@@ -27,7 +27,7 @@ class Deposit extends Model
             $data[$key]['id'] = $deposit->id;
             $data[$key]['employeeName'] = $deposit->users()->first()->name;
             $data[$key]['totalDeposit'] = $deposit->total_deposit;
-            $data[$key]['depositDate'] = indonesian_date_format($deposit);
+            $data[$key]['depositDate'] = indonesian_date_format($deposit->deposit_date);
             $data[$key]['status'] = Deposit::getDepositStatuses($deposit);
         }
 
@@ -46,7 +46,7 @@ class Deposit extends Model
 
         foreach ($deposits as $key => $deposit) {
             $data[$key]['id'] = $deposit->id;
-            $data[$key]['depositDate'] = indonesian_date_format($deposit);
+            $data[$key]['depositDate'] = indonesian_date_format($deposit->deposit_date);
             $data[$key]['totalDeposit'] = $deposit->total_deposit;
             $data[$key]['status'] = Deposit::getDepositStatuses($deposit);
         }
