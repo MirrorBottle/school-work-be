@@ -29,7 +29,6 @@ class CreateLoansTable extends Migration
             $table->integer('payment_counts');
             $table->tinyInteger('status')->comment('0 = process, 1 = approve, 2 = rejected');
             $table->boolean('is_approve')->nullable();
-            $table->dateTime('loan_date')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
