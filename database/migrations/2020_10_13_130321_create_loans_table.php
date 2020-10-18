@@ -20,7 +20,7 @@ class CreateLoansTable extends Migration
             $table->dateTime('start_date');
             $table->dateTime('due_date');
             $table->dateTime('paid_date')->nullable();
-            $table->integer('interest_percent');
+            $table->integer('loan_interest');
             $table->integer('total_loan');
             $table->integer('total_loan_with_interest');
             $table->integer('total_payment');
